@@ -68,9 +68,11 @@ import random
 # б) элементы исходного списка, которые не имеют повторений:
 # например, lst = [1 , 2, 4, 5, 6, 2, 5, 2], нужно получить lst2 = [1, 4, 6]
 
-list2=[]
-for j in range (random.randint(0, 100)):
-    list2.append(random.randint(0, 100))
+import operator
+
+list2=[1, 2, 4, 5, 6, 2, 5, 2]
+# for j in range (random.randint(0, 100)):
+#     list2.append(random.randint(0, 100))
 
 print (list2)
 s=set(list2)
@@ -83,9 +85,15 @@ for i in list2:
         d[i] += 1
     else:
         d[i] = 1
-list3=[]
-for k in d.items():
-    if d.values () == 1:
-        list3.append (d.keys())
+
+
+val = set(d.values())
+val.remove (1)
+
+list3 = []
+
+for key, value in d.items():
+    if value == 1:
+        list3.append(d.values(value))
 
 print (list3)
