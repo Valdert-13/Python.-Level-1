@@ -72,7 +72,7 @@ import math
 
 
 
-def isparall(a, b, c, d):
+def isparall(a, b, c, d):  # Вроде верно
 
     p1 = False
     p2 = False
