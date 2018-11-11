@@ -20,6 +20,15 @@ line = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysmNO'\
        'XiUWgsKQrDOeZoNlZNRvHnLgCmysUeKnVJXPFIzvdDyleXylnKBfLCjLHntltignbQoiQ'\
        'zTYwZAiRwycdlHfyHNGmkNqSwXUrxGc'
 
+import re
+
+line2 = re.findall('[^A-Z]*[a-z]+[^A-Z]*', line)
+print('Дано line: ', line)
+print('     line1: ', line2)
+print()
+
+
+
 
 # Задание-2:
 # Вывести символы в верхнем регистре, слева от которых находятся
@@ -45,9 +54,45 @@ line_2 = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysm'\
        'JFaXiUWgsKQrDOeZoNlZNRvHnLgCmysUeKnVJXPFIzvdDyleXylnKBfLCjLHntltignbQ'\
        'oiQzTYwZAiRwycdlHfyHNGmkNqSwXUrxGC'
 
+result_2 = re.findall(r'[a-z]{2}([A-Z]+)[A-Z]{2}', line_2)
+print(result_2)
+
 # Задание-3:
 # Напишите скрипт, заполняющий указанный файл (самостоятельно задайте имя файла)
 # произвольными целыми цифрами, в результате в файле должно быть
 # 2500-значное произвольное число.
 # Найдите и выведите самую длинную последовательность одинаковых цифр
 # в вышезаполненном файле.
+
+import random
+
+def gen_series(i, count):
+    func = '[' + str(i) + ']+'
+    lst = re.findall(func, count)
+    return search_len_max_series(lst)
+
+def search_len_max_series(lst):
+    for _ in lst:
+        lst = sorted(lst, reverse=True)
+    return lst[0]
+
+
+print('-' * 50)
+print('Задача 3')
+count = ''
+for n in range(2500):
+    n = random.randint(0, 9)
+    count = count + str(n)
+
+with open('big_number.txt', 'w', encoding='utf-8') as file:
+    file.write(count)
+
+lenght = 0
+result_number = 0
+for i in range(10):
+    number = gen_series(i, count)
+    if len(number) > lenght:
+        lenght = len(number)
+        result_number = number
+
+print(result_number)
