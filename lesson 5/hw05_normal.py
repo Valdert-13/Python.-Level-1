@@ -13,3 +13,32 @@
 # Для решения данной задачи с использованием простых алгоритмов,
 # оформленные в виде закон функций,
 # и импортированные в данный файл из easy.py
+
+import easy
+
+choice_to_function = {
+    1: easy.change_dir,
+    2: easy.check_dir,
+    3: easy.delete_dir,
+    4: easy.create_dir
+}
+def print_user_message():
+    print("Чего изволите?")
+    print('''
+      1. Перейти в папку
+      2. Просмотреть содержимое текущей папки
+      3. Удалить папку
+      4. Создать папку
+    Выберите нужный пункт:
+    ''')
+
+if __name__ == '__main__':
+    try:
+        print_user_message()
+        users_choice=int(input())
+        if choice_to_function.get(users_choice):
+            choice_to_function[users_choice]()
+        else:
+            print("Задан неверный пункт")
+    except:
+        print('Ничего не введено')
